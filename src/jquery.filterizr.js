@@ -783,18 +783,28 @@
         */
         _comparator: function(prop, sortOrder) {
             return function(a, b) {
+				var _a = null;
+				var _b = null;
+				if (a[prop] != parseInt(a[prop]) || b[prop] != parseInt(b[prop])) {
+					_a = String(a[prop]);
+					_b = String(b[prop]);
+				}
+				else {
+					_a = a[prop];
+					_b = b[prop];
+				}
                 if (sortOrder === 'asc') {
-                    if (a[prop] < b[prop])
+                    if (_a < _b)
                     return -1;
-                    else if (a[prop] > b[prop])
+                    else if (_a > _b)
                     return 1;
                     else
                     return 0;
                 }
                 else if (sortOrder === 'desc') {
-                    if (b[prop] < a[prop])
+                    if (_b < _a)
                     return -1;
-                    else if (b[prop] > a[prop])
+                    else if (_b > _a)
                     return 1;
                     else
                     return 0;
